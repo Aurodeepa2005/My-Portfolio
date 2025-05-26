@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 https://aurodeepa2005.github.io/My-Portfolio/
+=======
+https://aurodeepa2005.github.io/My-Portfolio/
+>>>>>>> 2cccecde1af2515a60619739104098ef0f145e06
