@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+
+/* Reset and base styles */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Lato', Arial, sans-serif;
+  font-size: 15px;
+  color: #222;
+  background: url('bg2.jpg') center center/cover no-repeat fixed;
+  min-height: 100vh;
+  transition: background 0.7s, color 0.7s;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+/* Theme Toggle Styles */
+.theme-toggle {
+  display: none;
+}
+.theme-label {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.5rem;
+  z-index: 300;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  padding: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  transition: background 0.4s;
+}
+.theme-label .moon { display: none; }
+.theme-toggle:checked + .theme-label {
+  background: rgba(34,34,34,0.9);
+  color: #fff;
+}
+.theme-toggle:checked + .theme-label .sun { display: none; }
+.theme-toggle:checked + .theme-label .moon { display: inline; }
+
+/* Dark mode variables */
+.theme-toggle:checked ~ .navbar {
+  background: #000000;
+  color: #fff;
+}
+.theme-toggle:checked ~ .navbar .logo {
+  color: #fff;
+}
+.theme-toggle:checked ~ .navbar .nav-links li a {
+  background: rgba(34,34,34,0.92);
+  color: #fff;
+}
+.theme-toggle:checked ~ .navbar .nav-links li a.active,
+.theme-toggle:checked ~ .navbar .nav-links li a:hover {
+  background: #df4176;
+  color: #fff;
+}
+.theme-toggle:checked ~ main {
+  background: rgba(24,24,24,0.92);
+  color: #fff;
+}
+.theme-toggle:checked ~ main .project-card {
+  background: rgba(34,34,34,0.92);
+  color: #fff;
+}
+.theme-toggle:checked ~ body {
+  background: #181818;
+  color: #fff;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  color: #181818;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  transition: background 0.5s, color 0.5s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #181818;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  transition: max-height 0.4s ease;
+}
+.nav-links li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 4px;
+  background: #f5d4d9; /* light pink */
+  color: #251100;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+.nav-links li a.active,
+.nav-links li a:hover {
+  background: #df4176; /* deeper pink on hover/active */
+  color: #fff;
+}
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  transition: transform 0.3s;
+}
+.nav-links li a:hover .nav-icon,
+.nav-links li a.active .nav-icon {
+  transform: scale(1.15) rotate(-6deg);
+}
+/* Default: all icons are clear and normal size */
+.nav-links .nav-icon {
+  filter: none;
+  transition: filter 0.3s, transform 0.3s;
+  transform: scale(1);
+}
+
+/* When hovering a nav link, blur all icons */
+.nav-links:hover .nav-icon {
+  filter: blur(2.5px) brightness(1.1);
+  transform: scale(1);
+}
+
+/* ...except the icon in the hovered link, which is sharp and enlarged */
+.nav-links li:hover .nav-icon,
+.nav-links li:focus-within .nav-icon {
+  filter: none;
+  transform: scale(1.25);
+}
+
+/* For keyboard accessibility: keep hovered/focused icon clear and big */
+.nav-links li:focus-within .nav-icon {
+  filter: none;
+  transform: scale(1.25);
+}
+
+
+.skip-link {
+  position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+  background: #ffd8ec; color: #222; padding: 0.5em 1em; border-radius: 4px; font-weight: bold;
+  z-index: 999;
+  transition: left 0.3s;
+}
+.skip-link:focus {
+  left: 1rem; top: 1rem; width: auto; height: auto; outline: 2px solid #fcaad3;
+}
+/* Skip link focus styles */
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  outline: 2px solid #fcaad3;
+}
+
+/* Hamburger menu styles */
+.menu-toggle {
+  display: none;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 32px;
+  height: 28px;
+  justify-content: space-between;
+  margin-left: 1rem;
+  z-index: 250;
+}
+.hamburger span {
+  display: block;
+  height: 4px;
+  background: #222;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 1rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background: #fff;
+    flex-direction: column;
+    width: 180px;
+    max-height: 0;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    gap: 0;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .nav-links li { border-bottom: 1px solid #eee; }
+  .nav-links li:last-child { border-bottom: none; }
+  .hamburger {
+    display: flex;
+    position: relative;
+    z-index: 250;
+    background: transparent;
+  }
+  .menu-toggle:checked ~ .nav-links {
+    max-height: 300px;
+  }
+  .menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+  .menu-toggle:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle:checked + .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -8px);
+  }
+  .theme-label {
+    top: 1.2rem;
+    right: 4.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.7rem 0.5rem;
+  }
+  .logo {
+    margin-bottom: 0.5rem;
+  }
+  .theme-label {
+    top: 0.7rem;
+    right: 3.5rem;
+    font-size: 1.1rem;
+    padding: 0.35rem;
+  }
+  .hamburger {
+    margin-left: auto;
+    margin-right: 0.3rem;
+  }
+}
+
+/* Page content styles */
+main {
+  padding: 2rem;
+  background: rgba(255,255,255,0.82);
+  color: #222;
+  min-height: 80vh;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin: 2rem auto;
+  border-radius: 16px;
+  max-width: 800px;
+  transition: background 0.7s, color 0.7s, box-shadow 0.7s;
+}
+@media (max-width: 600px) {
+  main {
+    padding: 1rem 0.5rem;
+    margin: 1rem 0.2rem;
+    border-radius: 8px;
+    max-width: 98vw;
+  }
+}
+
+/* Smooth Page Fade Animation */
+.page-transition {
+  animation: fadeIn 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* Project cards for projects.html */
+.projects-list {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin-top: 2rem;
+}
+.project-card {
+  background: rgba(255,255,255,0.95);
+  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeIn 1s;
+}
+.project-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(52,152,219,0.13);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo-img {
+  height: 36px;      /* Perfect height for most headers */
+  width: auto;       /* Maintains aspect ratio */
+  object-fit: contain;
+  border-radius: 50%; /* Optional: makes it circular */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+}
+
+@media (max-width: 600px) {
+  .logo-img {
+    height: 28px;    /* Slightly smaller on mobile */
+  }
+}
+.contact-details {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+.contact-details li {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.contact-details a {
+  color: #2c0f01;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-details a:hover {
+  color: #2c0f01;
+  text-decoration: underline;
+}
+.contact-details {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+.contact-details li {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.contact-details a {
+  color: #fcaad3;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-details a:hover {
+  color: #351202;
+  text-decoration: underline;
+}
+/* Email link styles */
+a[href^="mailto:"] {
+  color: #df4176;             
+  font-weight: bold;
+  
+  transition: color 0.2s;
+}
+a[href^="mailto:"]:hover {
+  color: #ab7cf0;              
+}
+
+/* LinkedIn link styles */
+a[href*="linkedin.com"] {
+  color: #df4176;              
+  font-weight: bold;
+ 
+  transition: color 0.2s;
+}
+a[href*="linkedin.com"]:hover {
+  color: #ab7cf0;              
+}
+
+/* GitHub link styles */
+a[href*="github.com"] {
+  color:#df4176;              
+  font-weight: bold;
+  
+  transition: color 0.2s;
+}
+a[href*="github.com"]:hover {
+  color: #ab7cf0;              
+}
+.contact-icon {
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  margin-right: 0.5em;
+  border-radius: 4px; /* or 50% for circular icons */
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+.contact-icon-link:hover .contact-icon {
+  transform: scale(1.15);
+}
+.project-link {
+  display: inline-block;
+  margin-top: 0.5em;
+  color: #ffffff;
+  background: #f7e7ec;
+  padding: 0.4em 1em;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.project-link:hover {
+  
+  color: #de93b5;
+}
+.projects-list h2 a {
+  color: #df4176;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.projects-list h2 a:hover {
+  color: #df4176;
+  text-decoration: underline;
+}
+
