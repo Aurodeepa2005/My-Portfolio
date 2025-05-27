@@ -1,12 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
 
 /* Reset and base styles */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
-  font-family: 'Lato', Arial, sans-serif;
+  font-family: "Lato", Arial, sans-serif;
   font-size: 15px;
   color: #222;
-  background: url('bg2.jpg') center center/cover no-repeat fixed;
+  background: url("bg2.jpg") center center/cover no-repeat fixed;
   min-height: 100vh;
   transition: background 0.7s, color 0.7s;
   line-height: 1.7;
@@ -22,24 +26,32 @@ body {
   top: 1.2rem;
   right: 1.5rem;
   z-index: 300;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 50%;
   padding: 0.5rem;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   transition: background 0.4s;
 }
-.theme-label .moon { display: none; }
+.theme-label .moon {
+  display: none;
+}
 .theme-toggle:checked + .theme-label {
-  background: rgba(34,34,34,0.9);
+  background: rgba(34, 34, 34, 0.9);
   color: #fff;
 }
-.theme-toggle:checked + .theme-label .sun { display: none; }
-.theme-toggle:checked + .theme-label .moon { display: inline; }
-
+.theme-toggle:checked + .theme-label .sun {
+  display: none;
+}
+.theme-toggle:checked + .theme-label .moon {
+  display: inline;
+}
+.theme-toggle + .theme-label .sun {
+  display: inline;
+}
 /* Dark mode variables */
 .theme-toggle:checked ~ .navbar {
   background: #000000;
@@ -49,7 +61,7 @@ body {
   color: #fff;
 }
 .theme-toggle:checked ~ .navbar .nav-links li a {
-  background: rgba(34,34,34,0.92);
+  background: rgba(34, 34, 34, 0.92);
   color: #fff;
 }
 .theme-toggle:checked ~ .navbar .nav-links li a.active,
@@ -58,16 +70,21 @@ body {
   color: #fff;
 }
 .theme-toggle:checked ~ main {
-  background: rgba(24,24,24,0.92);
+  background: rgba(24, 24, 24, 0.92);
   color: #fff;
 }
 .theme-toggle:checked ~ main .project-card {
-  background: rgba(34,34,34,0.92);
+  background: rgba(34, 34, 34, 0.92);
   color: #fff;
 }
 .theme-toggle:checked ~ body {
   background: #181818;
   color: #fff;
+}
+.theme-toggle-wrapper {
+  margin-left: 2rem; /* Add space between nav links and theme toggle */
+  display: flex;
+  align-items: center;
 }
 
 /* Navbar Styles */
@@ -82,7 +99,7 @@ body {
   top: 0;
   z-index: 200;
   transition: background 0.5s, color 0.5s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 .logo {
   font-size: 1.5rem;
@@ -91,9 +108,11 @@ body {
   color: #181818;
 }
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   transition: max-height 0.4s ease;
 }
 .nav-links li a {
@@ -106,7 +125,7 @@ body {
   color: #251100;
   font-weight: 600;
   transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 .nav-links li a.active,
 .nav-links li a:hover {
@@ -118,7 +137,7 @@ body {
   height: 20px;
   object-fit: cover;
   border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
   transition: transform 0.3s;
 }
 .nav-links li a:hover .nav-icon,
@@ -151,15 +170,27 @@ body {
   transform: scale(1.25);
 }
 
-
 .skip-link {
-  position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
-  background: #ffd8ec; color: #222; padding: 0.5em 1em; border-radius: 4px; font-weight: bold;
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  background: #ffd8ec;
+  color: #222;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  font-weight: bold;
   z-index: 999;
   transition: left 0.3s;
 }
 .skip-link:focus {
-  left: 1rem; top: 1rem; width: auto; height: auto; outline: 2px solid #fcaad3;
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  outline: 2px solid #fcaad3;
 }
 /* Skip link focus styles */
 .skip-link:focus {
@@ -209,16 +240,22 @@ body {
     width: 180px;
     max-height: 0;
     overflow: hidden;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     gap: 0;
-    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .nav-links li { border-bottom: 1px solid #eee; }
-  .nav-links li:last-child { border-bottom: none; }
+  .nav-links li {
+    border-bottom: 1px solid #eee;
+  }
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
   .hamburger {
     display: flex;
     position: relative;
-    z-index: 250;
+    z-index: 300;
+    margin-left: auto;
+    margin-right: 0.5rem;
     background: transparent;
   }
   .menu-toggle:checked ~ .nav-links {
@@ -251,22 +288,27 @@ body {
   .theme-label {
     top: 0.7rem;
     right: 3.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 0.35rem;
   }
   .hamburger {
     margin-left: auto;
     margin-right: 0.3rem;
   }
+  .theme-toggle-wrapper {
+    margin-left: 0;
+    margin-top: 1rem;
+    align-self: flex-end;
+  }
 }
 
 /* Page content styles */
 main {
   padding: 2rem;
-  background: rgba(255,255,255,0.82);
+  background: rgba(255, 255, 255, 0.82);
   color: #222;
   min-height: 80vh;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
   margin: 2rem auto;
   border-radius: 16px;
   max-width: 800px;
@@ -283,11 +325,17 @@ main {
 
 /* Smooth Page Fade Animation */
 .page-transition {
-  animation: fadeIn 0.8s cubic-bezier(0.4,0,0.2,1);
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px);}
-  to { opacity: 1; transform: translateY(0);}
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Project cards for projects.html */
@@ -298,16 +346,16 @@ main {
   margin-top: 2rem;
 }
 .project-card {
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   padding: 1.2rem 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: transform 0.3s, box-shadow 0.3s;
   animation: fadeIn 1s;
 }
 .project-card:hover {
   transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 8px 24px rgba(52,152,219,0.13);
+  box-shadow: 0 8px 24px rgba(52, 152, 219, 0.13);
 }
 .logo {
   display: flex;
@@ -316,16 +364,16 @@ main {
 }
 
 .logo-img {
-  height: 36px;      /* Perfect height for most headers */
-  width: auto;       /* Maintains aspect ratio */
+  height: 36px; /* Perfect height for most headers */
+  width: auto; /* Maintains aspect ratio */
   object-fit: contain;
   border-radius: 50%; /* Optional: makes it circular */
-  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
 }
 
 @media (max-width: 600px) {
   .logo-img {
-    height: 28px;    /* Slightly smaller on mobile */
+    height: 28px; /* Slightly smaller on mobile */
   }
 }
 .contact-details {
@@ -366,35 +414,35 @@ main {
 }
 /* Email link styles */
 a[href^="mailto:"] {
-  color: #df4176;             
+  color: #df4176;
   font-weight: bold;
-  
+
   transition: color 0.2s;
 }
 a[href^="mailto:"]:hover {
-  color: #ab7cf0;              
+  color: #ab7cf0;
 }
 
 /* LinkedIn link styles */
 a[href*="linkedin.com"] {
-  color: #df4176;              
+  color: #df4176;
   font-weight: bold;
- 
+
   transition: color 0.2s;
 }
 a[href*="linkedin.com"]:hover {
-  color: #ab7cf0;              
+  color: #ab7cf0;
 }
 
 /* GitHub link styles */
 a[href*="github.com"] {
-  color:#df4176;              
+  color: #df4176;
   font-weight: bold;
-  
+
   transition: color 0.2s;
 }
 a[href*="github.com"]:hover {
-  color: #ab7cf0;              
+  color: #ab7cf0;
 }
 .contact-icon {
   width: 22px;
@@ -420,7 +468,6 @@ a[href*="github.com"]:hover {
   transition: background 0.2s;
 }
 .project-link:hover {
-  
   color: #de93b5;
 }
 .projects-list h2 a {
@@ -432,4 +479,3 @@ a[href*="github.com"]:hover {
   color: #df4176;
   text-decoration: underline;
 }
-
